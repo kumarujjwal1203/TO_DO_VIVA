@@ -2,9 +2,10 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'my_very_secret_key'; // Hardcoded JWT secret key
+import dotenv from 'dotenv';
+dotenv.config();
 
-// REGISTER controller
+const JWT_SECRET = process.env.JWT_SECRET;
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -21,7 +22,6 @@ export const register = async (req, res) => {
   }
 };
 
-// LOGIN controller
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
